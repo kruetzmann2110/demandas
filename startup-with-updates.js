@@ -102,20 +102,62 @@ class SystemStarter {
                         console.log('✅ Dependências instaladas com sucesso!\n');
                         resolve(true);
                     } else {
-                        console.log('❌ Erro ao instalar dependências');
-                        console.log('🔧 Execute manualmente: npm install express mssql\n');
-                        resolve(false);
+                        console.log('❌ Erro ao instalar dependências via npm');
+                        console.log('🏢 Tentando instalador corporativo sem Git...');
+                        
+                        // Fallback para instalador corporativo
+                        this.instalarDependenciasCorporativo()
+                            .then(sucesso => {
+                                if (sucesso) {
+                                    console.log('✅ Dependências instaladas via método corporativo!\n');
+                                    resolve(true);
+                                } else {
+                                    console.log('❌ Falha na instalação corporativa');
+                                    console.log('🔧 Execute manualmente: node scripts/instalar-dependencias-corporativo.js\n');
+                                    resolve(false);
+                                }
+                            });
                     }
                 });
                 
                 npmInstall.on('error', (error) => {
                     console.log('❌ Erro ao executar npm install:', error.message);
-                    console.log('🔧 Execute manualmente: npm install express mssql\n');
-                    resolve(false);
+                    console.log('🏢 Tentando instalador corporativo sem Git...');
+                    
+                    // Fallback para instalador corporativo
+                    this.instalarDependenciasCorporativo()
+                        .then(sucesso => {
+                            if (sucesso) {
+                                console.log('✅ Dependências instaladas via método corporativo!\n');
+                                resolve(true);
+                            } else {
+                                console.log('❌ Falha na instalação corporativa');
+                                console.log('🔧 Execute manualmente: node scripts/instalar-dependencias-corporativo.js\n');
+                                resolve(false);
+                            }
+                        });
                 });
             });
         }
     }
+
+    /**
+     * Instalar dependências usando método corporativo (sem Git)
+     */
+    async instalarDependenciasCorporativo() {
+        try {
+            const DependencyInstaller = require('./scripts/instalar-dependencias-corporativo');
+            const installer = new DependencyInstaller();
+            return await installer.instalar();
+        } catch (error) {
+            console.log('❌ Erro no instalador corporativo:', error.message);
+            return false;
+        }
+    }
+
+    /**
+     * Iniciar o servidor backend
+     */
     async iniciarServidor() {
         return new Promise((resolve, reject) => {
             console.log('🎯 INICIANDO SERVIDOR BACKEND...\n');

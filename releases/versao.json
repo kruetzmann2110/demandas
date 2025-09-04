@@ -1,7 +1,7 @@
 {
-  "version": "2.0.3",
-  "updated_at": "2025-09-04T18:00:00.000Z",
-  "changelog": "Correção: Verificação e instalação automática de dependências (express, mssql)",
+  "version": "2.0.4",
+  "updated_at": "2025-09-04T18:30:00.000Z",
+  "changelog": "Solução para ambiente corporativo: Instalação de dependências sem Git, funciona com NPM bloqueado",
   "components": {
     "backend": {
       "version": "2.0.1",
@@ -9,9 +9,9 @@
       "changes": ["Suporte a ambientes corporativos", "Fallback para curl e PowerShell", "Configuração SSL relaxada"]
     },
     "frontend": {
-      "version": "2.0.3", 
-      "last_update": "2025-09-04T18:00:00.000Z",
-      "changes": ["Verificação automática de dependências", "Instalação automática do Express e MSSQL", "Melhoria na estabilidade"]
+      "version": "2.0.4", 
+      "last_update": "2025-09-04T18:30:00.000Z",
+      "changes": ["Instalador corporativo sem Git", "Express e MSSQL locais", "Funciona em rede restrita"]
     },
     "updater": {
       "version": "2.0.1",
