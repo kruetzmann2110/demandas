@@ -1,0 +1,42 @@
+{
+  "name": "Sistema de Gestão de Demandas Governança",
+  "version": "2.0.0",
+  "description": "Sistema completo para gestão de demandas com timeline, novos campos e filtros avançados",
+  "port": 3000,
+  "environment": "production",
+  "features": {
+    "timeline": true,
+    "analytics": true,
+    "export": true,
+    "real_demand_id": true,
+    "submotivo": true,
+    "open_date_tracking": true
+  },
+  "database": {
+    "type": "mssql",
+    "tables": {
+      "demands": "demands",
+      "timeline": "demand_timeline",
+      "users": "usuarios_demanda",
+      "themes": "temas_glossario"
+    }
+  },
+  "security": {
+    "windows_auth": true,
+    "fallback_users": true,
+    "permissions": {
+      "admin": ["create", "read", "update", "delete", "export", "redistribute"],
+      "focal": ["create", "read", "update", "export"],
+      "colaborador": ["create", "read"]
+    }
+  },
+  "ui": {
+    "auto_refresh": true,
+    "modern_design": true,
+    "responsive": true,
+    "filters": {
+      "general_demands": ["requester", "real_id", "submotivo", "group", "scenario", "status", "priority", "responsible", "deadline_status"],
+      "my_requests": ["status"]
+    }
+  }
+}

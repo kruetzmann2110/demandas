@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "updated_at": "2025-09-04T16:49:17.978Z",
+  "changelog": "Versão inicial com Dashboard, ranking por categoria, timezone corrigido e auto-update via GitHub",
+  "components": {
+    "backend": {
+      "version": "2.0.0",
+      "last_update": "2025-09-04T16:49:17.980Z",
+      "changes": [
+        "Auto-update GitHub",
+        "Timezone corrigido",
+        "API categoria"
+      ]
+    },
+    "frontend": {
+      "version": "2.0.0",
+      "last_update": "2025-09-04T16:49:17.980Z",
+      "changes": [
+        "Dashboard moderno",
+        "Ranking por categoria",
+        "Export Excel",
+        "Gráficos interativos"
+      ]
+    }
+  },
+  "requirements": {
+    "node_version": ">=16.0.0",
+    "database": "SQL Server com tabela demands atualizada",
+    "dependencies": [
+      "express",
+      "mssql"
+    ]
+  },
+  "repository": {
+    "owner": "kruetzmann2110",
+    "repo": "demandas",
+    "branch": "main",
+    "folder": "releases"
+  }
+}

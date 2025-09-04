@@ -1,0 +1,26 @@
+{
+  "originalUrl": "https://telefonicacorp.sharepoint.com/:f:/s/ESCALONAMENTO_TOP_SIGITM.TMBNL/Euv5uX62jLFNvQOF3e4qSEMBM6qBcQwKyriNZBbhQKSIlw?e=9cHhco",
+  "newUrl": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents/Demandas",
+  "analysis": {
+    "recommendedUrl": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents/Demandas",
+    "parsedInfo": {
+      "hostname": "telefonicacorp.sharepoint.com",
+      "siteName": "ESCALONAMENTO_TOP_SIGITM.TMBNL",
+      "baseUrl": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL",
+      "documentsUrl": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents",
+      "shareUrl": "https://telefonicacorp.sharepoint.com/:f:/s/ESCALONAMENTO_TOP_SIGITM.TMBNL/Euv5uX62jLFNvQOF3e4qSEMBM6qBcQwKyriNZBbhQKSIlw?e=9cHhco"
+    },
+    "allUrls": {
+      "sharedDocuments": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents/Demandas",
+      "layoutsApi": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/_layouts/download.aspx?SourceUrl=/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents/Demandas",
+      "restApi": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/_api/web/GetFolderByServerRelativeUrl('/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents/Demandas')/Files",
+      "directAccess": "https://telefonicacorp.sharepoint.com//s/ESCALONAMENTO_TOP_SIGITM.TMBNL/Euv5uX62jLFNvQOF3e4qSEMBM6qBcQwKyriNZBbhQKSIlw/Demandas",
+      "allItems": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents/Demandas/Forms/AllItems.aspx"
+    }
+  },
+  "validation": {
+    "testConfig": true,
+    "verificarAtualizacoes": true
+  },
+  "timestamp": "2025-09-04T14:16:20.023Z"
+}

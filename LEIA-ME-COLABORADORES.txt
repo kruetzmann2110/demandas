@@ -1,0 +1,89 @@
+████████████████████████████████████████████████████████████
+██                                                        ██
+██        SISTEMA DE DEMANDAS GOVERNANÇA TOP v2.0.0      ██
+██                                                        ██
+████████████████████████████████████████████████████████████
+
+🎯 COMO USAR (SUPER SIMPLES):
+
+1. 📁 DESCOMPACTE esta pasta em qualquer lugar:
+   - Desktop
+   - Documentos  
+   - Qualquer pasta que preferir
+
+2. 🚀 CLIQUE DUPLO no arquivo:
+   EXECUTAR-SISTEMA.bat
+
+3. ✅ PRONTO! O sistema abrirá automaticamente no navegador
+
+════════════════════════════════════════════════════════════
+
+📋 REQUISITOS (APENAS UMA VEZ):
+
+• Node.js (se não tiver, o sistema te dirá onde baixar)
+• Conexão com internet (para SharePoint)
+• Windows (qualquer versão recente)
+
+════════════════════════════════════════════════════════════
+
+🎊 RECURSOS DA VERSÃO 2.0.0:
+
+✨ NOVOS CAMPOS OBRIGATÓRIOS:
+   • Data de Abertura da Demanda
+   • ID da Demanda Real (ex: DEM-2024-001)
+   • Submotivo (categoria específica)
+
+📊 DASHBOARD MODERNO:
+   • Gráficos interativos (clique para detalhes)
+   • Rankings por categoria (Op1, Ql2, An3...)
+   • Aging por cenário com cores
+   • Export Excel enriquecido
+
+🔍 FILTROS INTELIGENTES:
+   • Autocomplete para submotivos
+   • Filtros por ID Real
+   • Busca conforme digita
+
+⚡ MELHORIAS TÉCNICAS:
+   • Timeline com hora correta
+   • Performance otimizada
+   • Auto-atualização via SharePoint
+
+════════════════════════════════════════════════════════════
+
+🔧 SOLUÇÃO DE PROBLEMAS:
+
+❌ "Node.js não encontrado"
+   → Baixe em: https://nodejs.org
+   → Instale versão LTS
+   → Reinicie o computador
+
+❌ "Erro ao instalar dependências"
+   → Abra prompt como administrador
+   → Execute: npm install
+
+❌ "Porta 3000 ocupada"
+   → Feche outros programas que usam porta 3000
+   → Execute novamente
+
+❌ Sistema não abre no navegador
+   → Acesse manualmente: http://localhost:3000
+
+════════════════════════════════════════════════════════════
+
+📞 SUPORTE:
+
+• Equipe Governança TOP
+• Versão: 2.0.0 Final
+• Data: Janeiro 2025
+
+════════════════════════════════════════════════════════════
+
+💡 DICAS:
+
+• Mantenha a janela do sistema aberta enquanto usa
+• Para parar: feche a janela do sistema
+• Para reiniciar: execute o .bat novamente
+• Atualizações são automáticas via SharePoint
+
+════════════════════════════════════════════════════════════

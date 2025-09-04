@@ -1,0 +1,40 @@
+{
+  "users": {
+    "G0040925": {
+      "name": "Fabiano k",
+      "role": "admin"
+    },
+    "G0055237": {
+      "name": "Kananda",
+      "role": "admin"
+    },
+    "A0162350": {
+      "name": "João",
+      "role": "admin"
+    },
+    "A0125079": {
+      "name": "Maria Daniela",
+      "role": "admin"
+    },
+    "A0075020": {
+      "name": "Agatha",
+      "role": "admin"
+    },
+    "A0074849": {
+      "name": "Johnny",
+      "role": "admin"
+    },
+    "R338561": {
+      "name": "Gabi Mazolla",
+      "role": "admin"
+    }
+  },
+  "themes": {
+    "default": "vivo-purple"
+  },
+  "metadata": {
+    "created_at": "2025-01-02T10:00:00.000Z",
+    "updated_at": "2025-01-02T10:00:00.000Z",
+    "version": "2.0.0"
+  }
+}

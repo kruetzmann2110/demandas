@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "updated_at": "2025-01-02T21:00:00.000Z",
+  "changelog": "Versão inicial com Dashboard, ranking por categoria, timezone corrigido e novos campos",
+  "components": {
+    "backend": {
+      "version": "2.0.0",
+      "last_update": "2025-01-02T21:00:00.000Z",
+      "changes": ["Timezone corrigido", "Função processarDataDoFrontend", "API categoria"]
+    },
+    "frontend": {
+      "version": "2.0.0", 
+      "last_update": "2025-01-02T21:00:00.000Z",
+      "changes": ["Dashboard moderno", "Ranking por categoria", "Export Excel simplificado", "Gráficos interativos"]
+    },
+    "database": {
+      "version": "2.0.0",
+      "last_update": "2025-01-02T21:00:00.000Z", 
+      "changes": ["Coluna categoria", "Novos campos: real_demand_id, submotivo"]
+    }
+  },
+  "requirements": {
+    "node_version": ">=16.0.0",
+    "database": "SQL Server com tabela demands atualizada",
+    "dependencies": ["express", "mssql"]
+  }
+}

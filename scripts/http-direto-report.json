@@ -1,0 +1,45 @@
+{
+  "timestamp": "2025-09-04T15:01:38.718Z",
+  "method": "HTTP Direto",
+  "credentials": {
+    "username": "fabiano.kruetzmann@telefonica.com"
+  },
+  "tests": {
+    "urlAccess": [
+      {
+        "name": "URL Direta - versao.json",
+        "url": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents/Demandas/versao.json",
+        "success": false,
+        "error": "read ECONNRESET"
+      },
+      {
+        "name": "URL Direta - index.html",
+        "url": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents/Demandas/index.html",
+        "success": false,
+        "error": "read ECONNRESET"
+      },
+      {
+        "name": "URL Direta - server.js",
+        "url": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents/Demandas/backend/server.js",
+        "success": false,
+        "error": "read ECONNRESET"
+      },
+      {
+        "name": "Pasta Demandas",
+        "url": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents/Demandas",
+        "success": false,
+        "error": "read ECONNRESET"
+      },
+      {
+        "name": "SharePoint Forms - AllItems",
+        "url": "https://telefonicacorp.sharepoint.com/sites/ESCALONAMENTO_TOP_SIGITM.TMBNL/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x012000FFBE0E3A8A05784186524E7B5C7EEEE3&id=%2Fsites%2FESCALONAMENTO%5FTOP%5FSIGITM%2ETMBNL%2FShared%20Documents%2FDemandas",
+        "success": false,
+        "error": "read ECONNRESET"
+      }
+    ],
+    "authentication": {
+      "success": false,
+      "error": "read ECONNRESET"
+    }
+  }
+}
