@@ -1,7 +1,7 @@
 {
-  "version": "2.0.0",
-  "updated_at": "2025-01-02T21:00:00.000Z",
-  "changelog": "Versão inicial com Dashboard, ranking por categoria, timezone corrigido e novos campos",
+  "version": "2.0.2",
+  "updated_at": "2025-09-04T17:35:00.000Z",
+  "changelog": "Versão inicial com Dashboard, ranking por categoria, timezone corrigido e novos campos + Auto-update via GitHub",
   "components": {
     "backend": {
       "version": "2.0.0",

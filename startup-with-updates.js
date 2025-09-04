@@ -43,7 +43,7 @@ class SystemStarter {
                     console.log(`📋 Versão disponível: ${versaoGitHub.version}`);
                     
                     // Verificar se precisa atualizar (versão simplificada)
-                    const CURRENT_VERSION = '2.0.0';
+                    const CURRENT_VERSION = '2.0.2';
                     if (versaoGitHub.version !== CURRENT_VERSION) {
                         console.log('🆕 Nova versão disponível!');
                         console.log('📋 Para atualizar manualmente, baixe do GitHub: https://github.com/kruetzmann2110/demandas');
@@ -138,24 +138,19 @@ class SystemStarter {
         try {
             console.log('========================================');
             console.log('🏢 SISTEMA DE DEMANDAS GOVERNANÇA TOP');
-            console.log('📅 Versão 2.0.0 - Auto Update via GitHub');
+            console.log('📅 Versão 2.0.2 - Auto Update via GitHub');
             console.log('========================================\n');
 
             // 1. Verificar atualizações
             const foiAtualizado = await this.verificarAtualizacoes();
             
             if (foiAtualizado) {
-                // Se foi atualizado, reiniciar o processo inteiro
-                console.log('🔄 Reiniciando processo após atualização...\n');
+                // Se foi atualizado, aguardar um pouco e continuar
+                console.log('🔄 Sistema atualizado! Aguardando e continuando execução...\n');
+                await this.aguardar(3000); // Aguardar 3 segundos
                 
-                // Reiniciar este script
-                const novoProcesso = spawn('node', [__filename], {
-                    stdio: 'inherit',
-                    detached: true
-                });
-                
-                novoProcesso.unref();
-                process.exit(0);
+                // Não reiniciar o processo, apenas continuar
+                console.log('🚀 Continuando com versão atualizada...');
             }
 
             // 2. Iniciar servidor normalmente

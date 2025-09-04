@@ -1,7 +1,7 @@
 {
-  "version": "2.0.1",
-  "updated_at": "2025-09-04T17:35:00.000Z",
-  "changelog": "Atualização de exemplo: Título da página alterado e badge de versão adicionada na navbar",
+  "version": "2.0.2",
+  "updated_at": "2025-09-04T17:45:00.000Z",
+  "changelog": "Teste do sistema de auto-update: Correção da lógica de reinicialização para inicializar servidor após atualização",
   "components": {
     "backend": {
       "version": "2.0.1",
@@ -9,9 +9,9 @@
       "changes": ["Suporte a ambientes corporativos", "Fallback para curl e PowerShell", "Configuração SSL relaxada"]
     },
     "frontend": {
-      "version": "2.0.1", 
-      "last_update": "2025-09-04T17:35:00.000Z",
-      "changes": ["Título da página atualizado", "Badge de versão adicionada na navbar", "Demonstração de update via GitHub"]
+      "version": "2.0.2", 
+      "last_update": "2025-09-04T17:45:00.000Z",
+      "changes": ["Sistema de reinicialização corrigido", "Badge atualizada para v2.0.2", "Auto-update agora funciona corretamente"]
     },
     "updater": {
       "version": "2.0.1",
