@@ -1,0 +1,49 @@
+
+========================================
+📋 INSTRUÇÕES DE INSTALAÇÃO EM PRODUÇÃO
+========================================
+
+📂 ARQUIVOS OBRIGATÓRIOS:
+   • startup-with-updates.js
+   • INICIAR-COM-GITHUB.bat
+   • package.json
+   • README.md
+   • version.json
+   • backend/server.js
+   • backend/users-auth.json
+   • web/index.html
+   • web/js/app.js
+   • web/css/style.css
+   • scripts/github-update-system.js
+
+🚀 PASSOS PARA INSTALAÇÃO:
+
+1️⃣ CRIAR PASTA DE PRODUÇÃO:
+   • Criar pasta: C:\SistemaDemandas (ou local de sua escolha)
+
+2️⃣ COPIAR ARQUIVOS:
+   • Baixar do GitHub: https://github.com/kruetzmann2110/demandas
+   • Ou copiar os arquivos listados acima da pasta de desenvolvimento
+
+3️⃣ INSTALAR DEPENDÊNCIAS:
+   • Abrir CMD na pasta de produção
+   • Executar: npm install express mssql
+
+4️⃣ EXECUTAR SISTEMA:
+   • Duplo clique em: INICIAR-COM-GITHUB.bat
+   • Ou executar: node startup-with-updates.js
+
+🔧 VERIFICAÇÃO:
+   • Testar conectividade: node startup-with-updates.js --test
+   • Verificar arquivos: dir (deve mostrar todos os arquivos listados)
+
+⚠️ PROBLEMAS COMUNS:
+   • "Cannot find module": Arquivo startup-with-updates.js não foi copiado
+   • "npm install failed": Node.js não instalado ou versão antiga
+   • "GitHub connection failed": Verificar conexão com internet
+
+📞 SUPORTE:
+   • GitHub: https://github.com/kruetzmann2110/demandas/issues
+   • Email: fabiano.kruetzmann@telefonica.com
+
+========================================

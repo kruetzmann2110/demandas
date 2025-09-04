@@ -68,6 +68,36 @@ Os arquivos de atualização ficam na pasta `releases/`:
 - **Banco**: SQL Server
 - **Auto-Update**: GitHub API
 
+## 🚨 Resolução de Problemas
+
+### Erro: "Cannot find module startup-with-updates.js"
+
+**Causa**: Arquivo não foi copiado para produção
+
+**Solução Rápida**:
+```bash
+# 1. Baixar arquivo essencial
+curl -o startup-with-updates.js https://raw.githubusercontent.com/kruetzmann2110/demandas/main/startup-with-updates.js
+
+# 2. Baixar sistema de update
+mkdir scripts
+curl -o scripts/github-update-system.js https://raw.githubusercontent.com/kruetzmann2110/demandas/main/scripts/github-update-system.js
+
+# 3. Testar
+node startup-with-updates.js --test
+```
+
+**Solução Completa**:
+1. Execute o diagnóstico: `node diagnostico-producao.js`
+2. Ou baixe o instalador: `INSTALAR-SISTEMA-COMPLETO.bat`
+3. Ou clone o repositório: `git clone https://github.com/kruetzmann2110/demandas.git .`
+
+### Outros Problemas
+
+- **Node.js não encontrado**: Instalar Node.js LTS
+- **Dependências**: `npm install express mssql`
+- **Conexão GitHub**: Verificar internet
+
 ## 📞 Suporte
 
 Para suporte técnico ou dúvidas:

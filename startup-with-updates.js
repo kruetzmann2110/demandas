@@ -6,6 +6,7 @@
 const path = require('path');
 const { spawn } = require('child_process');
 const GitHubUpdateSystem = require('./scripts/github-update-system');
+const CorporateDownloader = require('./scripts/corporate-downloader');
 
 console.log('🚀 INICIANDO SISTEMA DE DEMANDAS...\n');
 
@@ -17,6 +18,8 @@ class SystemStarter {
             branch: 'main',
             folder: 'releases'
         });
+        
+        this.corporateDownloader = new CorporateDownloader();
     }
 
     /**
@@ -26,7 +29,31 @@ class SystemStarter {
         console.log('🔍 VERIFICANDO ATUALIZAÇÕES...\n');
         
         try {
-            const atualizacaoDisponivel = await this.githubUpdater.verificarEAtualizarSistema();
+            // Tentar método padrão primeiro
+            let atualizacaoDisponivel = await this.githubUpdater.verificarEAtualizarSistema();
+            
+            // Se falhou por certificado SSL, tentar método corporativo
+            if (!atualizacaoDisponivel) {
+                console.log('\n🏢 Tentando método corporativo para ambientes com proxy/firewall...');
+                
+                const versaoGitHub = await this.corporateDownloader.verificarVersaoGitHub();
+                
+                if (versaoGitHub) {
+                    console.log('✅ Conexão via método corporativo estabelecida!');
+                    console.log(`📋 Versão disponível: ${versaoGitHub.version}`);
+                    
+                    // Verificar se precisa atualizar (versão simplificada)
+                    const CURRENT_VERSION = '2.0.0';
+                    if (versaoGitHub.version !== CURRENT_VERSION) {
+                        console.log('🆕 Nova versão disponível!');
+                        console.log('📋 Para atualizar manualmente, baixe do GitHub: https://github.com/kruetzmann2110/demandas');
+                    } else {
+                        console.log('✅ Versão atual é a mais recente');
+                    }
+                } else {
+                    console.log('⚠️ Métodos de atualização indisponíveis - GitHub pode estar bloqueado');
+                }
+            }
             
             if (atualizacaoDisponivel) {
                 console.log('\n✅ SISTEMA ATUALIZADO COM SUCESSO!');

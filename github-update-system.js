@@ -7,17 +7,6 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-// Configuração para ambiente corporativo
-// Ignorar verificação de certificado SSL para ambientes com proxy/firewall
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
-// Configurar agent HTTPS para ambientes corporativos
-const httpsAgent = new https.Agent({
-    rejectUnauthorized: false,
-    keepAlive: true,
-    timeout: 30000
-});
-
 class GitHubUpdateSystem {
     constructor(config = {}) {
         // Configuração do repositório GitHub
@@ -55,8 +44,7 @@ class GitHubUpdateSystem {
             const req = https.request(url, {
                 method: options.method || 'GET',
                 headers: headers,
-                timeout: 30000,
-                agent: httpsAgent  // Usar agent configurado para ambiente corporativo
+                timeout: 30000
             }, (res) => {
                 let data = '';
 
@@ -115,8 +103,7 @@ class GitHubUpdateSystem {
                 headers: {
                     'User-Agent': 'Sistema-Demandas-Updater/1.0'
                 },
-                timeout: 30000,
-                agent: httpsAgent  // Usar agent configurado para ambiente corporativo
+                timeout: 30000
             }, (res) => {
                 let data = '';
 
