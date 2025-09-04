@@ -1,5 +1,5 @@
 {
-  "version": "2.0.2",
+  "version": "2.0.3",
   "updated_at": "2025-09-04T17:35:00.000Z",
   "changelog": "Versão inicial com Dashboard, ranking por categoria, timezone corrigido e novos campos + Auto-update via GitHub",
   "components": {

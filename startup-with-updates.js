@@ -43,7 +43,7 @@ class SystemStarter {
                     console.log(`📋 Versão disponível: ${versaoGitHub.version}`);
                     
                     // Verificar se precisa atualizar (versão simplificada)
-                    const CURRENT_VERSION = '2.0.2';
+                    const CURRENT_VERSION = '2.0.3';
                     if (versaoGitHub.version !== CURRENT_VERSION) {
                         console.log('🆕 Nova versão disponível!');
                         console.log('📋 Para atualizar manualmente, baixe do GitHub: https://github.com/kruetzmann2110/demandas');
@@ -76,8 +76,46 @@ class SystemStarter {
     }
 
     /**
-     * Iniciar o servidor backend
+     * Verificar e instalar dependências se necessário
      */
+    async verificarDependencias() {
+        console.log('🔍 Verificando dependências...');
+        
+        try {
+            require('express');
+            require('mssql');
+            console.log('✅ Dependências encontradas\n');
+            return true;
+        } catch (error) {
+            console.log('⚠️ Dependências faltando - instalando automaticamente...');
+            
+            const { spawn } = require('child_process');
+            
+            return new Promise((resolve) => {
+                const npmInstall = spawn('npm', ['install', 'express', 'mssql'], {
+                    stdio: 'inherit',
+                    cwd: __dirname
+                });
+                
+                npmInstall.on('close', (code) => {
+                    if (code === 0) {
+                        console.log('✅ Dependências instaladas com sucesso!\n');
+                        resolve(true);
+                    } else {
+                        console.log('❌ Erro ao instalar dependências');
+                        console.log('🔧 Execute manualmente: npm install express mssql\n');
+                        resolve(false);
+                    }
+                });
+                
+                npmInstall.on('error', (error) => {
+                    console.log('❌ Erro ao executar npm install:', error.message);
+                    console.log('🔧 Execute manualmente: npm install express mssql\n');
+                    resolve(false);
+                });
+            });
+        }
+    }
     async iniciarServidor() {
         return new Promise((resolve, reject) => {
             console.log('🎯 INICIANDO SERVIDOR BACKEND...\n');
@@ -138,7 +176,7 @@ class SystemStarter {
         try {
             console.log('========================================');
             console.log('🏢 SISTEMA DE DEMANDAS GOVERNANÇA TOP');
-            console.log('📅 Versão 2.0.2 - Auto Update via GitHub');
+            console.log('📅 Versão 2.0.3 - Auto Update via GitHub');
             console.log('========================================\n');
 
             // 1. Verificar atualizações
@@ -153,7 +191,14 @@ class SystemStarter {
                 console.log('🚀 Continuando com versão atualizada...');
             }
 
-            // 2. Iniciar servidor normalmente
+            // 2. Verificar dependências
+            const dependenciasOK = await this.verificarDependencias();
+            
+            if (!dependenciasOK) {
+                console.log('⚠️ Continuando mesmo com problemas de dependências...');
+            }
+
+            // 3. Iniciar servidor normalmente
             await this.iniciarServidor();
             
         } catch (error) {

@@ -334,7 +334,7 @@ class GitHubUpdateSystem {
         console.log('🔍 VERIFICANDO ATUALIZAÇÕES NO GITHUB');
         console.log('========================================\n');
         
-        const CURRENT_VERSION = '2.0.2'; // Versão atual do sistema
+        const CURRENT_VERSION = '2.0.3'; // Versão atual do sistema
         
         try {
             // 1. Verificar versão no GitHub
