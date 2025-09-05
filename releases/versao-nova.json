@@ -1,0 +1,11 @@
+{
+  "version": "2.0.7",
+  "updated_at": "2025-09-05T03:15:00.000Z",
+  "changelog": "CORREÇÃO v2.0.7: Sistema agora atualiza arquivos na pasta web/ corretamente",
+  "files": [
+    "backend/server.js",
+    "web/js/app.js",
+    "web/css/style.css",
+    "web/index.html"
+  ]
+}

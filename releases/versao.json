@@ -1,0 +1,11 @@
+{
+  "version": "2.0.9",
+  "updated_at": "2025-09-05T03:45:00.000Z",
+  "changelog": "v2.0.9: Sistema agora atualiza AMBOS os frontends (web/ e raiz)",
+  "files": [
+    "backend/server.js",
+    "web/js/app.js",
+    "web/css/style.css",
+    "web/index.html"
+  ]
+}

@@ -256,37 +256,37 @@ class GitHubUpdateSystem {
                 const result = await this.downloadRawFile(arquivo);
                 
                 if (result.success) {
-                    // Salvar arquivo localmente - CORRIGIDO para manter estrutura de pastas
-                    let localPath;
+                    // Salvar arquivo localmente - ATUALIZAR AMBOS OS FRONTENDS
+                    let localPaths = [];
+                    
                     if (arquivo.startsWith('web/')) {
-                        // Para arquivos web/, manter a estrutura completa
-                        localPath = path.join(__dirname, '..', arquivo);
+                        // Para arquivos web/, salvar na pasta web E na raiz
+                        const webPath = path.join(__dirname, '..', arquivo);
+                        const rootPath = path.join(__dirname, '..', arquivo.replace('web/', ''));
+                        localPaths = [webPath, rootPath];
                     } else {
-                        // Para outros arquivos, remover primeira pasta
-                        localPath = path.join(__dirname, '..', arquivo.replace(/^[^/]+\//, ''));
+                        // Para outros arquivos (backend), remover primeira pasta
+                        const localPath = path.join(__dirname, '..', arquivo.replace(/^[^/]+\//, ''));
+                        localPaths = [localPath];
                     }
                     
-                    // Criar diretório se necessário
-                    const dir = path.dirname(localPath);
-                    if (!fs.existsSync(dir)) {
-                        fs.mkdirSync(dir, { recursive: true });
+                    // Salvar em todos os locais necessários
+                    for (const localPath of localPaths) {
+                        // Criar diretório se necessário
+                        const dir = path.dirname(localPath);
+                        if (!fs.existsSync(dir)) {
+                            fs.mkdirSync(dir, { recursive: true });
+                        }
+                        
+                        // Salvar novo arquivo diretamente (sem backup desnecessário)
+                        fs.writeFileSync(localPath, result.content);
+                        console.log(`✅ Arquivo atualizado: ${localPath}`);
                     }
-                    
-                    // Fazer backup se arquivo existir
-                    if (fs.existsSync(localPath)) {
-                        const backupPath = `${localPath}.backup-${Date.now()}`;
-                        fs.copyFileSync(localPath, backupPath);
-                        console.log(`💾 Backup criado: ${backupPath}`);
-                    }
-                    
-                    // Salvar novo arquivo
-                    fs.writeFileSync(localPath, result.content);
-                    console.log(`✅ Arquivo atualizado: ${localPath}`);
                     
                     results.push({
                         arquivo: arquivo,
                         success: true,
-                        localPath: localPath,
+                        localPaths: localPaths,
                         size: result.size
                     });
                 } else {
@@ -363,12 +363,12 @@ class GitHubUpdateSystem {
             console.log(`🆕 NOVA VERSÃO DISPONÍVEL: ${versaoGitHub.version}`);
             console.log(`📋 Mudanças: ${versaoGitHub.changelog || 'Melhorias e correções'}`);
             
-            // 3. Baixar atualizações
+            // 3. Baixar atualizações - AGORA ATUALIZA AMBOS OS FRONTENDS
             const arquivosParaBaixar = [
-                'backend/server.js',
-                'web/js/app.js',
-                'web/css/style.css',
-                'web/index.html'
+                'backend/server.js',     // Backend
+                'web/js/app.js',        // JavaScript WEB
+                'web/css/style.css',    // CSS WEB  
+                'web/index.html'        // HTML WEB
             ];
             
             const arquivosAtualizados = await this.baixarAtualizacoes(arquivosParaBaixar);
