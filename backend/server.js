@@ -39,10 +39,10 @@ console.log('=== SISTEMA DE DEMANDAS COM TIMELINE (BASEADO NO EXEMPLO FUNCIONAL)
 
 // Configuração do banco SQL Server (para ambiente real)
 const dbConfig = {
-    server: '10.124.100.94',
+    server: '+++++',
     database: 'b2b',
     user: 'AUTOMACAO_B2B',
-    password: 'Automacao_TOP!',
+    password: '++++!',
     options: {
         encrypt: false,
         trustServerCertificate: true,
