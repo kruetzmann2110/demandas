@@ -36,7 +36,7 @@ class GitHubUpdateSystem {
         this.config = {
             owner: config.owner || 'kruetzmann2110', // seu usuário GitHub
             repo: config.repo || 'demandas', // seu novo repositório
-            branch: config.branch || 'main',
+            branch: config.branch || 'master',
             folder: config.folder || 'releases', // pasta onde ficam as atualizações
             token: config.token || null, // GitHub token (opcional para repos públicos)
             ...config
@@ -484,7 +484,7 @@ if (require.main === module) {
     const githubUpdater = new GitHubUpdateSystem({
         owner: 'kruetzmann2110', // seu usuário GitHub
         repo: 'demandas', // seu novo repositório
-        branch: 'main',
+        branch: 'master',
         folder: 'releases'
         // token: 'ghp_xxxxxxxxxxxx' // GitHub token se necessário
     });
