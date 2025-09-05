@@ -1,24 +1,30 @@
 {
-  "version": "2.0.4",
-  "updated_at": "2025-09-04T18:30:00.000Z",
-  "changelog": "Solução para ambiente corporativo: Instalação de dependências sem Git, funciona com NPM bloqueado",
+  "version": "2.0.5",
+  "updated_at": "2025-09-04T21:40:00.000Z",
+  "changelog": "TESTE v2.0.5: Alterações visuais para testar sistema de atualizações automáticas",
   "components": {
     "backend": {
-      "version": "2.0.1",
-      "last_update": "2025-09-04T17:30:00.000Z",
-      "changes": ["Suporte a ambientes corporativos", "Fallback para curl e PowerShell", "Configuração SSL relaxada"]
+      "version": "2.0.5",
+      "last_update": "2025-09-04T21:40:00.000Z",
+      "changes": ["Correção do erro express.json", "Suporte a ambientes corporativos", "Sistema de atualizações funcionando", "Configuração SSL relaxada"]
     },
     "frontend": {
-      "version": "2.0.4", 
-      "last_update": "2025-09-04T18:30:00.000Z",
-      "changes": ["Instalador corporativo sem Git", "Express e MSSQL locais", "Funciona em rede restrita"]
+      "version": "2.0.5", 
+      "last_update": "2025-09-04T21:40:00.000Z",
+      "changes": ["TESTE VISUAL: Título e cabeçalho alterados", "Sistema de atualizações automáticas", "Interface atualizada", "Funciona em rede restrita"]
     },
     "updater": {
-      "version": "2.0.1",
-      "last_update": "2025-09-04T17:30:00.000Z",
-      "changes": ["Sistema corporativo de download", "Múltiplos métodos de fallback", "Detecção automática de ambiente"]
+      "version": "2.0.5",
+      "last_update": "2025-09-04T21:40:00.000Z",
+      "changes": ["Sistema de atualizações FUNCIONANDO", "Download automático do GitHub", "Backup automático", "Detecção automática de versões"]
     }
   },
+  "files": [
+    "backend/server.js",
+    "web/js/app.js", 
+    "web/css/style.css",
+    "web/index.html"
+  ],
   "requirements": {
     "node_version": ">=16.0.0",
     "database": "SQL Server com tabela demands atualizada",
@@ -29,6 +35,7 @@
     "ssl_bypass": true,
     "curl_fallback": true,
     "powershell_fallback": true,
-    "offline_mode": true
+    "offline_mode": true,
+    "auto_update": true
   }
 }
