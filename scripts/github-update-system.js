@@ -256,8 +256,15 @@ class GitHubUpdateSystem {
                 const result = await this.downloadRawFile(arquivo);
                 
                 if (result.success) {
-                    // Salvar arquivo localmente
-                    const localPath = path.join(__dirname, '..', arquivo.replace(/^[^/]+\//, ''));
+                    // Salvar arquivo localmente - CORRIGIDO para manter estrutura de pastas
+                    let localPath;
+                    if (arquivo.startsWith('web/')) {
+                        // Para arquivos web/, manter a estrutura completa
+                        localPath = path.join(__dirname, '..', arquivo);
+                    } else {
+                        // Para outros arquivos, remover primeira pasta
+                        localPath = path.join(__dirname, '..', arquivo.replace(/^[^/]+\//, ''));
+                    }
                     
                     // Criar diretório se necessário
                     const dir = path.dirname(localPath);

@@ -1430,7 +1430,7 @@ app.listen(PORT, () => {
                     exec(`open "${url}"`, (error, stdout, stderr) => {
                         if (error) {
                             console.log(`⚠️  Erro ao abrir navegador: ${error.message}`);
-                            console.log(`🌐 Acesse manualmente: ${url}`);
+                            console.log(`���� Acesse manualmente: ${url}`);
                         } else {
                             console.log(`✅ Navegador aberto: ${url}`);
                         }
