@@ -1,5 +1,5 @@
 @echo off
-title Sistema de Demandas - GitHub Auto Update
+title Sistema de Demandas - GitHub Auto Update v3.0.3
 chcp 65001 >nul
 color 0B
 cls
@@ -7,7 +7,7 @@ cls
 echo.
 echo ========================================
 echo 🏢 SISTEMA DE DEMANDAS GOVERNANÇA TOP
-echo 📅 Versão 2.0.0 - Auto Update GitHub
+echo 📅 Versão 3.0.3 - Auto Update GitHub
 echo ========================================
 echo.
 
@@ -15,7 +15,7 @@ echo 🔍 Verificando Node.js...
 node --version >nul 2>&1
 if errorlevel 1 (
     echo ❌ Node.js não encontrado!
-    echo 📥 Instale o Node.js em: https://nodejs.org
+    echo 📥 Instale o Node.js em: https://nodejs.org ou central de Software
     pause
     exit /b 1
 )
