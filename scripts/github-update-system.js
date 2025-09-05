@@ -8,8 +8,20 @@ const fs = require('fs');
 const path = require('path');
 
 // Configuração para ambiente corporativo
-// Ignorar verificação de certificado SSL para ambientes com proxy/firewall
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+// Ignorar verificação de certificado SSL APENAS para ambientes com proxy/firewall
+if (!process.env.NODE_TLS_REJECT_UNAUTHORIZED) {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+    
+    // Suprimir warning específico do NODE_TLS_REJECT_UNAUTHORIZED em produção
+    const originalEmitWarning = process.emitWarning;
+    process.emitWarning = (warning, ...args) => {
+        if (typeof warning === 'string' && warning.includes('NODE_TLS_REJECT_UNAUTHORIZED')) {
+            // Warning suprimido - configuração necessária para ambientes corporativos
+            return;
+        }
+        return originalEmitWarning.call(process, warning, ...args);
+    };
+}
 
 // Configurar agent HTTPS para ambientes corporativos
 const httpsAgent = new https.Agent({
@@ -256,37 +268,31 @@ class GitHubUpdateSystem {
                 const result = await this.downloadRawFile(arquivo);
                 
                 if (result.success) {
-                    // Salvar arquivo localmente - ATUALIZAR AMBOS OS FRONTENDS
-                    let localPaths = [];
+                    // Salvar arquivo localmente - APENAS na pasta correta (web/)
+                    let localPath;
                     
                     if (arquivo.startsWith('web/')) {
-                        // Para arquivos web/, salvar na pasta web E na raiz
-                        const webPath = path.join(__dirname, '..', arquivo);
-                        const rootPath = path.join(__dirname, '..', arquivo.replace('web/', ''));
-                        localPaths = [webPath, rootPath];
+                        // Para arquivos web/, manter a estrutura completa na pasta web
+                        localPath = path.join(__dirname, '..', arquivo);
                     } else {
-                        // Para outros arquivos (backend), remover primeira pasta
-                        const localPath = path.join(__dirname, '..', arquivo.replace(/^[^/]+\//, ''));
-                        localPaths = [localPath];
+                        // Para backend, remover primeira pasta
+                        localPath = path.join(__dirname, '..', arquivo.replace(/^[^/]+\//, ''));
                     }
                     
-                    // Salvar em todos os locais necessários
-                    for (const localPath of localPaths) {
-                        // Criar diretório se necessário
-                        const dir = path.dirname(localPath);
-                        if (!fs.existsSync(dir)) {
-                            fs.mkdirSync(dir, { recursive: true });
-                        }
-                        
-                        // Salvar novo arquivo diretamente (sem backup desnecessário)
-                        fs.writeFileSync(localPath, result.content);
-                        console.log(`✅ Arquivo atualizado: ${localPath}`);
+                    // Criar diretório se necessário
+                    const dir = path.dirname(localPath);
+                    if (!fs.existsSync(dir)) {
+                        fs.mkdirSync(dir, { recursive: true });
                     }
+                    
+                    // Salvar novo arquivo diretamente
+                    fs.writeFileSync(localPath, result.content);
+                    console.log(`✅ Arquivo atualizado: ${localPath}`);
                     
                     results.push({
                         arquivo: arquivo,
                         success: true,
-                        localPaths: localPaths,
+                        localPath: localPath,
                         size: result.size
                     });
                 } else {

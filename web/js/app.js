@@ -3158,7 +3158,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return userRoles[username] || userRoles[lowerUsername] || userRoles[upperUsername] || 'user';
     };
 
-    // ✅ Função para verificar se é admin ou focal (admin = admin + focal)
+    // ✅ Funç��o para verificar se é admin ou focal (admin = admin + focal)
     const isAdminOrFocal = (role) => {
         return role === 'admin' || role === 'focal';
     };

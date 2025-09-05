@@ -1,7 +1,7 @@
 {
-  "version": "2.0.9",
-  "updated_at": "2025-09-05T03:45:00.000Z",
-  "changelog": "v2.0.9: Sistema agora atualiza AMBOS os frontends (web/ e raiz)",
+  "version": "3.0.1",
+  "updated_at": "2025-09-05T04:10:00.000Z",
+  "changelog": "v3.0.1: PRODUÇÃO - Warning SSL suprimido, estrutura organizada",
   "source": "GitHub",
   "repository": "kruetzmann2110/demandas"
 }

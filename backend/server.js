@@ -1315,8 +1315,8 @@ app.post('/api/timeline', async (req, res) => {
 });
 
 // Servir arquivos estáticos e interface web
-app.use('/css', express.static(path.join(__dirname, 'web', 'css')));
-app.use('/js', express.static(path.join(__dirname, 'web', 'js')));
+app.use('/css', express.static(path.join(__dirname, '..', 'web', 'css')));
+app.use('/js', express.static(path.join(__dirname, '..', 'web', 'js')));
 
 // Rota raiz com HTML embarcado para evitar problemas com pkg
 app.get('/', (req, res) => {
