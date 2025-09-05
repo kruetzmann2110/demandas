@@ -15,7 +15,7 @@ class SystemStarter {
         this.githubUpdater = new GitHubUpdateSystem({
             owner: 'kruetzmann2110',
             repo: 'demandas',
-            branch: 'main',
+            branch: 'master',
             folder: 'releases'
         });
         
