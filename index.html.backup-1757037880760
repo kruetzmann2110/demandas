@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Demandas - Equipe Governança</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=2025081402">
+    <style>
+        /* CSS INLINE AJUSTADO PARA NOTEBOOKS - TAMANHO EQUILIBRADO */
+        @media (min-width: 1200px) and (max-width: 1600px) {
+            /* BOTÕES "VER" - APENAS ÍCONE DO OLHO */
+            .table .btn-outline-primary {
+                padding: 4px 8px !important;
+                font-size: 0 !important; /* Remove o texto "Ver" */
+                line-height: 1 !important;
+                border-width: 1px !important;
+                min-width: 32px !important;
+                width: 32px !important;
+                height: 28px !important;
+            }
+            
+            /* MOSTRAR APENAS O ÍCONE DO OLHO */
+            .table .btn-outline-primary i {
+                display: inline-block !important;
+                font-size: 14px !important;
+            }
+            
+            /* TEXTO DA TABELA AJUSTADO */
+            .table {
+                font-size: 0.8rem !important;
+            }
+            
+            .table th,
+            .table td {
+                padding: 0.4rem 0.3rem !important;
+                font-size: 0.75rem !important;
+                vertical-align: middle !important;
+            }
+            
+            /* BADGES AJUSTADOS */
+            .badge {
+                font-size: 0.65rem !important;
+                padding: 0.2rem 0.4rem !important;
+            }
+            
+            /* NAVBAR AJUSTADA */
+            .navbar-nav .nav-link {
+                font-size: 0.8rem !important;
+                padding: 0.3rem 0.6rem !important;
+            }
+            
+            /* TÍTULOS AJUSTADOS */
+            h2 {
+                font-size: 1.4rem !important;
+            }
+            
+            /* CORPO DO TEXTO */
+            body {
+                font-size: 0.85rem !important;
+            }
+            
+            /* BOTÕES GERAIS */
+            .btn {
+                padding: 0.3rem 0.6rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .btn-sm {
+                padding: 0.2rem 0.4rem !important;
+                font-size: 0.7rem !important;
+            }
+            
+            /* ÁREA DE FILTROS COMPACTA */
+            .form-control, .form-select {
+                padding: 0.25rem 0.5rem !important;
+                font-size: 0.8rem !important;
+                height: auto !important;
+            }
+            
+            /* REDUZIR ESPAÇAMENTO DOS FILTROS */
+            .mb-3 {
+                margin-bottom: 0.75rem !important;
+            }
+            
+            /* CARDS DE FILTRO MAIS COMPACTOS */
+            .card-body {
+                padding: 0.75rem !important;
+            }
+        }
+        
+        @media (min-width: 1200px) and (max-width: 1400px) and (max-height: 800px) {
+            /* NOTEBOOKS MENORES - APENAS ÍCONE DO OLHO */
+            .table .btn-outline-primary {
+                padding: 3px 6px !important;
+                font-size: 0 !important; /* Remove o texto "Ver" */
+                line-height: 1 !important;
+                min-width: 30px !important;
+                width: 30px !important;
+                height: 26px !important;
+            }
+            
+            /* MOSTRAR APENAS O ÍCONE DO OLHO */
+            .table .btn-outline-primary i {
+                display: inline-block !important;
+                font-size: 12px !important;
+            }
+            
+            .table {
+                font-size: 0.75rem !important;
+            }
+            
+            .table th,
+            .table td {
+                padding: 0.3rem 0.2rem !important;
+                font-size: 0.7rem !important;
+            }
+            
+            .badge {
+                font-size: 0.6rem !important;
+                padding: 0.15rem 0.3rem !important;
+            }
+            
+            body {
+                font-size: 0.8rem !important;
+            }
+            
+            h2 {
+                font-size: 1.2rem !important;
+            }
+            
+            /* ÁREA DE FILTROS AINDA MAIS COMPACTA */
+            .form-control, .form-select {
+                padding: 0.2rem 0.4rem !important;
+                font-size: 0.75rem !important;
+                height: auto !important;
+            }
+            
+            /* REDUZIR MAIS O ESPAÇAMENTO DOS FILTROS */
+            .mb-3 {
+                margin-bottom: 0.5rem !important;
+            }
+            
+            /* CARDS DE FILTRO ULTRA COMPACTOS */
+            .card-body {
+                padding: 0.5rem !important;
+            }
+        }
+    </style>
+    <meta name="theme-color" content="#0d6efd">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+                <i class="fas fa-headset" style="color: #6f42c1;"></i>
+                Gestão de Demandas
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-home">
+                            <i class="fas fa-house me-1"></i>Início
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-new-request">
+                            <i class="fas fa-plus-circle me-1"></i>Nova Demanda
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-my-requests">
+                            <i class="fas fa-list me-1"></i>Minhas Demandas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-general-demands">
+                            <i class="fas fa-chart-bar me-1"></i>Demandas Gerais
+                        </a>
+                    </li>
+                    <li class="nav-item" id="nav-focal-panel-item" style="display: none;">
+                        <a class="nav-link" href="#" id="nav-focal-panel">
+                            <i class="fas fa-tasks me-1"></i>Demandas Atribuídas
+                        </a>
+                    </li>
+                    <li class="nav-item" id="nav-admin-panel-item" style="display: none;">
+                        <a class="nav-link" href="#" id="nav-admin-panel">
+                            <i class="fas fa-cogs me-1"></i>Gerenciar Demandas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-analytics-ranking">
+                            <i class="fas fa-chart-pie me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-help">
+                            <i class="fas fa-circle-question me-1"></i>Ajuda
+                        </a>
+                    </li>
+                </ul>
+                <div class="navbar-nav">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle text-primary"></i>
+                            <span id="current-user-name">Carregando...</span>
+                            <span id="current-user-role" class="badge bg-secondary"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><h6 class="dropdown-header">Informações do Usuário</h6></li>
+                            <li><a class="dropdown-item disabled" href="#">
+                                <i class="fas fa-info-circle me-2"></i>Usuário detectado automaticamente
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="location.reload()">
+                                <i class="fas fa-refresh me-2"></i>Atualizar Sistema
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <div class="container-fluid mt-4">
+        <main id="app-content" class="fade-in">
+            <div id="initial-loader" class="text-center py-5">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="mt-3 mb-0">Carregando sistema...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" id="toast-container"></div>
+
+    <!-- Modal de Timeline -->
+    <div class="modal fade" id="timelineModal" tabindex="-1" aria-labelledby="timelineModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="timelineModalLabel">
+                        <i class="fas fa-history me-2" style="color: #6f42c1;"></i>Timeline da Demanda #<span id="timeline-demand-id"></span>
+                    </h5>
+                    <button type="button" class="btn-close" data-action="modal-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div id="timeline-events">
+                                <!-- Eventos da timeline serão inseridos aqui -->
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="fas fa-info-circle me-2" style="color: #6f42c1;"></i>Detalhes da Demanda</h6>
+                                </div>
+                                <div class="card-body" id="demand-details">
+                                    <!-- Detalhes da demanda serão inseridos aqui -->
+                                </div>
+                            </div>
+                            
+                            <div class="card mt-3" id="timeline-interaction-section" style="display: none;">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="fas fa-comment me-2" style="color: #6f42c1;"></i>Adicionar Observação</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <textarea class="form-control" id="timeline-observation" rows="3" placeholder="Digite sua observação aqui..."></textarea>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-sm w-100" data-action="add-observation">
+                                        <i class="fas fa-plus me-1"></i>Adicionar Observação
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="card mt-3" id="status-update-section" style="display: none;">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="fas fa-edit me-2" style="color: #6f42c1;"></i>Atualizar Status</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Novo Status</label>
+                                                <select class="form-select" id="new-status">
+                                                    <option value="">Selecione um status...</option>
+                                                    <option value="Aberta">Aberta</option>
+                                                    <option value="Em análise">Em análise</option>
+                                                    <option value="Aguardando aprovação">Aguardando aprovação</option>
+                                                    <option value="Aguardando retorno ( demandante)">Aguardando retorno (demandante)</option>
+                                                    <option value="Em andamento">Em andamento</option>
+                                                    <option value="Concluída">Concluída</option>
+                                                    <option value="Cancelada">Cancelada</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Definir Prazo (Focal)</label>
+                                                <input type="date" class="form-control" id="new-deadline-timeline" min="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-success btn-sm w-100" data-action="update-status">
+                                        <i class="fas fa-save me-1"></i>Atualizar Status e Prazo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-action="modal-close">
+                        <i class="fas fa-times me-1"></i>Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Classificação de Prioridade Analytics -->
+    <!-- Modal Ajuda / Glossário (Governança) -->
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">
+                        <i class="fas fa-circle-question me-2" style="color:#6f42c1"></i>Guia Rápido – Governança
+                    </h5>
+                    <button type="button" class="btn-close" data-action="modal-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="row g-0">
+                        <div class="col-lg-4 p-4 border-end bg-light">
+                            <h6 class="text-uppercase text-muted">Sumário</h6>
+                            <div class="list-group list-group-flush" id="help-toc">
+                                <a href="#h-intro" class="list-group-item list-group-item-action">Visão Geral</a>
+                                <a href="#h-roles" class="list-group-item list-group-item-action">Papéis e Acessos</a>
+                                <a href="#h-priority" class="list-group-item list-group-item-action">Regra de Priorização</a>
+                                <a href="#h-ranking" class="list-group-item list-group-item-action">Sistema de Rankings</a>
+                                <a href="#h-screens" class="list-group-item list-group-item-action">Telas Principais</a>
+                                <a href="#h-timeline" class="list-group-item list-group-item-action">Timeline</a>
+                                <a href="#h-tips" class="list-group-item list-group-item-action">Boas Práticas</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 p-4" style="max-height:70vh; overflow:auto;">
+                            <section id="h-intro" class="mb-4">
+                                <h5 class="mb-2">Visão Geral</h5>
+                                <p>O Sistema de Gestão de Demandas da equipe <strong>Governança</strong> centraliza solicitações, prioriza com clareza e facilita o acompanhamento por Solicitantes, Focais e Administradores.</p>
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <div class="p-3 border rounded-3 shadow-sm bg-white">
+                                            <i class="fas fa-user text-primary fa-lg mb-2"></i>
+                                            <div class="small text-muted">Solicitante</div>
+                                            <div class="fw-semibold">Abre e acompanha</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="p-3 border rounded-3 shadow-sm bg-white">
+                                            <i class="fas fa-user-tie text-warning fa-lg mb-2"></i>
+                                            <div class="small text-muted">Focal</div>
+                                            <div class="fw-semibold">Trata e atualiza</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="p-3 border rounded-3 shadow-sm bg-white">
+                                            <i class="fas fa-shield-halved text-success fa-lg mb-2"></i>
+                                            <div class="small text-muted">Administrador</div>
+                                            <div class="fw-semibold">Gerencia e redistribui</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section id="h-roles" class="mb-4">
+                                <h5 class="mb-2">Papéis e Acessos</h5>
+                                <ul>
+                                    <li><strong>Solicitante</strong>: cria demanda, visualiza status, adiciona observações.</li>
+                                    <li><strong>Focal</strong>: responsável pela tratativa, atualiza status e prazo.</li>
+                                    <li><strong>Administrador</strong>: visão completa, redistribuição e indicadores.</li>
+                                </ul>
+                            </section>
+
+                            <section id="h-priority" class="mb-4">
+                                <h5 class="mb-2">Regra de Priorização</h5>
+                                <p>O formulário converte impactos e complexidade em <strong>pontuação (0–24)</strong>, que define a prioridade:</p>
+                                <div class="row g-2">
+                                    <div class="col-md-4">
+                                        <div class="p-3 border rounded-3 bg-white shadow-sm h-100">
+                                            <div class="small text-muted mb-2">Perguntas 1 a 7</div>
+                                            <div class="fw-semibold">Escala 1 a 3</div>
+                                            <div class="small">Impacto Cliente, Complexidade, TDNA, NPS, Reincidência, Rechamada, Frequência de Automação</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="p-3 border rounded-3 bg-white shadow-sm h-100">
+                                            <div class="small text-muted mb-2">Perguntas 8 e 9</div>
+                                            <div class="fw-semibold">Sim = 1 | Não = 0</div>
+                                            <div class="small">Gestão nos times e Envolvimento de todos os grupos</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="p-3 border rounded-3 bg-white shadow-sm h-100">
+                                            <div class="small text-muted mb-2">Pergunta 10</div>
+                                            <div class="fw-semibold">Sim = 0 | Não = 1</div>
+                                            <div class="small">É possível realizar a entrega internamente?</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <span class="badge bg-danger me-1">Alta: ≥ 18</span>
+                                    <span class="badge bg-warning text-dark me-1">Média: 12–17</span>
+                                    <span class="badge bg-success">Baixa: 0–11</span>
+                                </div>
+                            </section>
+
+                            <section id="h-ranking" class="mb-4">
+                                <h5 class="mb-2">Sistema de Rankings por Categoria</h5>
+                                <p>Cada cenário pertence a uma <strong>categoria</strong> e possui seu próprio ranking baseado na pontuação Analytics:</p>
+                                
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="card border-primary">
+                                            <div class="card-header bg-primary text-white">
+                                                <h6 class="mb-0">🔤 Siglas das Categorias</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-6">
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <span class="badge me-2" style="background: #3b82f6; color: white;">Op</span>
+                                                            <small><strong>Operacional</strong></small>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <span class="badge me-2" style="background: #10b981; color: white;">Ql</span>
+                                                            <small><strong>Qualidade</strong></small>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <span class="badge me-2" style="background: #8b5cf6; color: white;">An</span>
+                                                            <small><strong>Analytics</strong></small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <span class="badge me-2" style="background: #eab308; color: white;">Pr</span>
+                                                            <small><strong>Processos</strong></small>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <span class="badge me-2" style="background: #ef4444; color: white;">Pj</span>
+                                                            <small><strong>Projetos</strong></small>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <span class="badge me-2" style="background: #6b7280; color: white;">Ot</span>
+                                                            <small><strong>Outros</strong></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="card border-success">
+                                            <div class="card-header bg-success text-white">
+                                                <h6 class="mb-0">🏆 Exemplos de Rankings</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-2">
+                                                    <strong>Operacional:</strong> 
+                                                    <span class="badge me-1" style="background: #3b82f6; color: white;">Op1</span>
+                                                    <span class="badge me-1" style="background: #3b82f6; color: white;">Op2</span>
+                                                    <span class="badge me-1" style="background: #3b82f6; color: white;">Op3</span>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <strong>Analytics:</strong>
+                                                    <span class="badge me-1" style="background: #8b5cf6; color: white;">An1</span>
+                                                    <span class="badge me-1" style="background: #8b5cf6; color: white;">An2</span>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <strong>Qualidade:</strong>
+                                                    <span class="badge me-1" style="background: #10b981; color: white;">Ql1</span>
+                                                    <span class="badge me-1" style="background: #10b981; color: white;">Ql2</span>
+                                                </div>
+                                                <div class="small text-muted mt-2">
+                                                    <i class="fas fa-info-circle me-1"></i>
+                                                    Cada categoria tem seu ranking independente baseado na pontuação do formulário
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="alert alert-info mt-3">
+                                    <h6><i class="fas fa-lightbulb me-2"></i>Como funciona:</h6>
+                                    <ul class="mb-0">
+                                        <li><strong>Cada categoria</strong> tem seu próprio ranking (Op1, Op2... / Ql1, Ql2... / An1, An2...)</li>
+                                        <li><strong>Ranking baseado</strong> na pontuação Analytics (0-24 pontos)</li>
+                                        <li><strong>Cores diferentes</strong> para cada categoria nos badges</li>
+                                        <li><strong>Clique nos gráficos</strong> do Dashboard para ver detalhes da categoria</li>
+                                    </ul>
+                                </div>
+                            </section>
+
+                            <section id="h-screens" class="mb-4">
+                                <h5 class="mb-2">Telas Principais</h5>
+                                <ul>
+                                    <li><strong>Início</strong>: capa, métricas e atalhos.</li>
+                                    <li><strong>Nova Demanda</strong>: abertura + classificação de prioridade.</li>
+                                    <li><strong>Minhas Demandas</strong>: solicitações do usuário com filtro por status.</li>
+                                    <li><strong>Demandas Gerais</strong>: visão global com filtros (Solicitante, ID Real, Grupo, Cenário, Submotivo, Status, Prioridade, Responsável, Status Prazo).</li>
+                                    <li><strong>Demandas Atribuídas</strong>: demandas do Focal, com atualização de status/prazo.</li>
+                                    <li><strong>Gerenciar Demandas</strong>: visão Admin, redistribuição e acompanhamento.</li>
+                                </ul>
+                            </section>
+
+                            <section id="h-timeline" class="mb-4">
+                                <h5 class="mb-2">Timeline</h5>
+                                <p>Histórico das ações: Criação, Atribuição, Atualização de Status, Observações – com autor e data/hora.</p>
+                            </section>
+
+                            <section id="h-tips" class="mb-2">
+                                <h5 class="mb-2">Boas Práticas</h5>
+                                <ul>
+                                    <li>Preencha a classificação com atenção – ela define a prioridade.</li>
+                                    <li>Atualize status e prazo sempre que houver mudança.</li>
+                                    <li>Use "Aguardando demandante" quando a tratativa depender do solicitante.</li>
+                                    <li>Registre observações relevantes na timeline.</li>
+                                    <li><strong>Novos campos:</strong> Data de Abertura, ID Real e Submotivo são obrigatórios.</li>
+                                </ul>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-action="modal-close">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="classificationModal" tabindex="-1" aria-labelledby="classificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="classificationModalLabel">
+                        <i class="fas fa-chart-line me-2 text-primary"></i>Classificação de Prioridade - Analytics
+                    </h5>
+                    <button type="button" class="btn-close" data-action="modal-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="classificationForm">
+                        <input type="hidden" id="classification-demand-id">
+                        
+                        <div class="alert alert-light border">
+                            <h6><i class="fas fa-info-circle me-2 text-primary"></i>Regra de Pontuação:</h6>
+                            <ul class="mb-0">
+                                <li><strong>Perguntas 1-7:</strong> Soma normal de 1 a 3 pontos cada</li>
+                                <li><strong>Perguntas 8-9:</strong> Se "Sim" = 1 ponto, Se "Não" = 0 pontos</li>
+                                <li><strong>Pergunta 10:</strong> Se "Sim" = 0 pontos, Se "Não" = 1 ponto</li>
+                                <li><strong>Pontuação máxima:</strong> 24 pontos</li>
+                            </ul>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-primary mb-3"><i class="fas fa-list me-2"></i>Critérios de Avaliação (1-3 pontos)</h6>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">1. Impacto no cliente final</label>
+                                    <select class="form-select classification-select" name="impacto_cliente_final" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="1">1 - Baixo impacto</option>
+                                        <option value="2">2 - Médio impacto</option>
+                                        <option value="3">3 - Alto impacto</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">2. Complexidade técnica para entrega</label>
+                                    <select class="form-select classification-select" name="complexidade_tecnica" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="1">1 - Baixa complexidade</option>
+                                        <option value="2">2 - Média complexidade</option>
+                                        <option value="3">3 - Alta complexidade</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">3. TDNA</label>
+                                    <select class="form-select classification-select" name="tdna" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="1">1 - Baixo</option>
+                                        <option value="2">2 - Médio</option>
+                                        <option value="3">3 - Alto</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">4. NPS</label>
+                                    <select class="form-select classification-select" name="nps" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="1">1 - Baixo</option>
+                                        <option value="2">2 - Médio</option>
+                                        <option value="3">3 - Alto</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">5. Reincidência</label>
+                                    <select class="form-select classification-select" name="reincidencia" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="1">1 - Baixa</option>
+                                        <option value="2">2 - Média</option>
+                                        <option value="3">3 - Alta</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">6. Reclamada</label>
+                                    <select class="form-select classification-select" name="reclamada" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="1">1 - Baixa</option>
+                                        <option value="2">2 - Média</option>
+                                        <option value="3">3 - Alta</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">7. Frequência Automação</label>
+                                    <select class="form-select classification-select" name="frequencia_automacao" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="1">1 - Baixa</option>
+                                        <option value="2">2 - Média</option>
+                                        <option value="3">3 - Alta</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <h6 class="text-success mb-3"><i class="fas fa-check-circle me-2"></i>Critérios Sim/Não</h6>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">8. Gestão equipes direta nos times</label>
+                                    <select class="form-select classification-select" name="gestao_equipes_direta" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="sim">Sim (1 ponto)</option>
+                                        <option value="nao">Não (0 pontos)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">9. Envolvimento de todos os grupos</label>
+                                    <select class="form-select classification-select" name="envolvimento_grupos" required>
+                                        <option value="sim">Sim (1 ponto)</option>
+                                        <option value="nao">Não (0 pontos)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">10. Possível gerar dentro de casa?</label>
+                                    <select class="form-select classification-select" name="gerar_dentro_casa" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="sim">Sim (0 pontos)</option>
+                                        <option value="nao">Não (1 ponto)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <div class="card bg-light">
+                                        <div class="card-body text-center">
+                                            <h4 class="text-primary mb-2">Pontuação Calculada</h4>
+                                            <div class="display-4 fw-bold text-primary" id="calculated-score">0</div>
+                                            <div class="text-muted">de 24 pontos</div>
+                                            <div class="mt-2">
+                                                <span class="badge bg-secondary" id="priority-level">Baixa</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-action="modal-close">
+                        <i class="fas fa-times me-1"></i>Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary" data-action="submit-classification">
+                        <i class="fas fa-save me-1"></i>Salvar Classificação
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Redistribuição (Admin) -->
+    <div class="modal fade" id="redistributeModal" tabindex="-1" aria-labelledby="redistributeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="redistributeModalLabel">
+                        <i class="fas fa-exchange-alt me-2 text-primary"></i>Redistribuir Demanda
+                    </h5>
+                    <button type="button" class="btn-close" data-action="modal-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="redistribute-demand-id">
+                    <div class="mb-3">
+                        <label class="form-label">Selecionar Focal Responsável</label>
+                        <select class="form-select" id="new-responsible">
+                            <option value="">Selecione um focal...</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Observação da Redistribuição</label>
+                        <textarea class="form-control" id="redistribute-observation" rows="3" placeholder="Motivo da redistribuição..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-action="modal-close">Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-action="confirm-redistribute">Confirmar Redistribuição</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
