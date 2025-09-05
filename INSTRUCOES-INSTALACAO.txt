@@ -1,0 +1,73 @@
+
+========================================
+📦 PACOTE DE PRODUÇÃO - SISTEMA DE DEMANDAS
+========================================
+
+🎯 VERSÃO: 2.0.1 - Otimizada para ambiente corporativo
+📅 GERADO EM: 04/09/2025, 14:25:54
+
+🚀 INSTALAÇÃO RÁPIDA:
+
+1️⃣ EXTRAIR ARQUIVOS:
+   • Extraia todos os arquivos para uma pasta (ex: C:\SistemaDemandas)
+
+2️⃣ INSTALAR NODE.JS:
+   • Baixe e instale Node.js LTS: https://nodejs.org
+   • Reinicie o computador após instalação
+
+3️⃣ INSTALAR DEPENDÊNCIAS:
+   • Abra CMD na pasta extraída
+   • Execute: npm install express mssql
+
+4️⃣ INICIAR SISTEMA:
+   • Duplo clique em: INICIAR-COM-GITHUB.bat
+   • Ou execute: node startup-with-updates.js
+
+🔧 RESOLUÇÃO DE PROBLEMAS:
+
+• ERRO DE CERTIFICADO SSL:
+  - Execute: TESTAR-CONECTIVIDADE-CORPORATIVA.bat
+  - O sistema usa fallback automático para curl/PowerShell
+
+• ARQUIVOS FALTANDO:
+  - Execute: CORRIGIR-PRODUCAO.bat
+  - Ou execute: diagnostico-producao.js
+
+• INSTALAÇÃO COMPLETA:
+  - Execute: INSTALAR-SISTEMA-COMPLETO.bat
+
+📋 ARQUIVOS INCLUSOS:
+
+✅ SISTEMA PRINCIPAL:
+   • startup-with-updates.js (Sistema de inicialização)
+   • INICIAR-COM-GITHUB.bat (Script de início)
+   • backend/server.js (Servidor principal)
+   • web/* (Interface do usuário)
+
+✅ AUTO-UPDATE:
+   • scripts/github-update-system.js (Update padrão)
+   • scripts/corporate-downloader.js (Fallback corporativo)
+   • releases/versao.json (Controle de versão)
+
+✅ FERRAMENTAS DE SUPORTE:
+   • TESTAR-CONECTIVIDADE-CORPORATIVA.bat
+   • CORRIGIR-PRODUCAO.bat
+   • diagnostico-producao.js
+   • INSTALAR-SISTEMA-COMPLETO.bat
+
+✅ DOCUMENTAÇÃO:
+   • README.md (Documentação geral)
+   • docs/instalacao.md (Guia de instalação)
+   • SOLUCAO-CORPORATIVA.md (Ambiente corporativo)
+
+🌐 ACESSO:
+   • URL: http://localhost:3000
+   • Dashboard: http://localhost:3000/index.html
+
+📞 SUPORTE:
+   • Email: fabiano.kruetzmann@telefonica.com
+   • GitHub: https://github.com/kruetzmann2110/demandas/issues
+
+========================================
+✅ SISTEMA PRONTO PARA PRODUÇÃO!
+========================================
