@@ -1,7 +1,7 @@
 {
-  "version": "3.0.2",
-  "updated_at": "2025-09-05T04:20:00.000Z",
-  "changelog": "v3.0.2: CORREÇÃO - Sistema agora usa branch master corretamente",
-  "source": "GitHub",
+  "version": "3.0.3",
+  "updated_at": "2025-09-05T05:21:00.000Z",
+  "changelog": "v3.0.3: PRODUÇÃO - Pacote otimizado com anti-cache e correções de path",
+  "source": "Local",
   "repository": "kruetzmann2110/demandas"
 }

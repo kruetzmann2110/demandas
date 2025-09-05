@@ -1,0 +1,11 @@
+{
+  "version": "3.0.2",
+  "updated_at": "2025-09-05T04:20:00.000Z",
+  "changelog": "v3.0.2: CORREÇÃO - Sistema agora usa branch master corretamente",
+  "files": [
+    "backend/server.js",
+    "web/js/app.js",
+    "web/css/style.css",
+    "web/index.html"
+  ]
+}
